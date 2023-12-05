@@ -1,13 +1,19 @@
-import content from './index';
+import { content, createComponent } from './index';
 
 function createNav() {
+  const navItems = ["HOME", "MENU", "ABOUT"];
+  const nav = createComponent("nav", null, null, null)
 
-    return element;
-  }
+  navItems.forEach((item) =>
+    nav.appendChild(createComponent("div", null, "nav-item", item))
+  );
 
-  function renderNav(){
-    element = createNav();
-    content.appendChild(element);
+  return nav;
 }
 
-  export {renderNav};
+function renderNav(){
+  const element = createNav();
+  content.appendChild(element);
+}
+
+export {renderNav};

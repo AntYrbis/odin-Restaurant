@@ -1,40 +1,41 @@
-import content from './index';
+import { content, createComponent } from './index';
 
 function createPlate(title,description,price) {
-    const element = document.createElement('div');
-    element.classList.add("plate");
+    const element = createComponent('div', null, 'plate', null);
 
-    const titleContent = document.createElement('div');
-    titleContent.classList.add("title");
-    titleContent.textContent = title;
+    const titleContent = createComponent('div', null, 'title', title);
     element.appendChild(titleContent);
 
-    const descContent = document.createElement('div');
-    descContent.classList.add("desc");
-    descContent.textContent = description;
+    const descContent = createComponent('div', null, 'desc', description);
     element.appendChild(descContent);
 
-    const priceContent = document.createElement('div');
-    priceContent.classList.add("price");
-    priceContent.textContent = price + " $";
+    const priceContent = createComponent('div', null, 'price', price + " $");
     element.appendChild(priceContent);
 
-    element.textContent = myName('Cody');
+    const break_menu = createComponent("div", null, 'menu-break', null);
+    element.appendChild(break_menu);
 
     return element;
 };
 
 function createMenu(){
-    const element = document.createElement('div');
+    const element = createComponent("div", null, 'main', null);
 
-    const plate1 = createPlate("Tarte","it's a tarte","150");
-    element.appendChild(plate1);
+    const menu = createComponent("div", null, 'menu-container', null);
+    element.appendChild(menu);
+
+    const plate1 = createPlate("Meal","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque placerat, tellus sit amet","15");
+    menu.appendChild(plate1);
+    const plate2 = createPlate("Super Meal","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque placerat, tellus sit amet","20");
+    menu.appendChild(plate2);
+    const plate3 = createPlate("Extra Meal","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque placerat, tellus sit amet","30");
+    menu.appendChild(plate3);
     
     return element;
 };
 
 function renderMenu(){
-    element = createMenu();
+    const element = createMenu();
     content.appendChild(element);
 };
 

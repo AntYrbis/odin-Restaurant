@@ -1,20 +1,21 @@
 import './style.css';
 
-import myName from './myName';
-import renderAbout from './about';
-import renderHome from './home';
-import renderMenu from './menu';
+import { renderAbout } from './about';
+import { renderHome } from './home';
+import { renderMenu } from './menu';
+import { renderNav } from './navbar';
+import { renderFooter } from './footer';
 
 import Icon from './icon.png';
 import Back from './background.jpg';
 
 const content = document.getElementById("content");
 
-function component() {
-  const element = document.createElement('div');
-
-  // use your function!
-  element.textContent = myName('Cody');
+function createComponent(type, id, myClass, content) {
+  const element = document.createElement(type);
+  if (id) element.id = id;
+  if (myClass) element.classList.add(myClass);
+  if (content) element.innerText = content;
   return element;
 }
 
@@ -22,23 +23,24 @@ function changeTab(newTab){
     content.innerHTML = "";
     renderNav();
     switch (newTab) {
-        case HOME:
+        case 'HOME':
             renderHome();
             break;
-        case MENU:
+        case 'MENU':
             renderMenu();
             break;
-        case ABOUT:
+        case 'ABOUT':
             renderAbout();
             break;
     }
     renderFooter();
 }
-
-home();
+renderNav();
+renderHome();
+renderFooter();
 document.addEventListener("click", (e) => {
   const target = e.target.innerText;
   changeTab(target); /*HOME MENU ABOUT*/
 });
 
-export {content};
+export {content, createComponent };
