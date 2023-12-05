@@ -40,7 +40,9 @@ renderHome();
 renderFooter();
 document.addEventListener("click", (e) => {
   const target = e.target.innerText;
-  changeTab(target); /*HOME MENU ABOUT*/
+  if(target == 'HOME' || target == 'MENU' || target == 'ABOUT'){
+    changeTab(target);
+  }
 });
 
 export {content, createComponent };
